@@ -2,8 +2,7 @@
 $:.unshift(File.dirname(__FILE__) + '/lib') unless $:.include?(File.dirname(__FILE__) + '/lib')
 
 require 'bombshell'
-require 'iterm_automator'
-require 'main'
+require 'mission_control'
 require 'rubygems'
 
-Bombshell.launch(Main::Shell)
+Bombshell.launch(MissionControl::Project)
