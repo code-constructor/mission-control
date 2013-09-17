@@ -6,4 +6,4 @@ require 'bombshell'
 require 'mission_control'
 require 'rubygems'
 
-Bombshell.launch(MissionControl::Project)
+Bombshell.launch(MissionControl::Shell)

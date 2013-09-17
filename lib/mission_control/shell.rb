@@ -1,13 +1,11 @@
-require 'active_support/inflector'
-
 module MissionControl
-  class Project < Bombshell::Environment
+  class Shell < Bombshell::Environment
     include Bombshell::Shell
 
     prompt_with 'mission-control'
 
-    def open(name)
-      dispatcher.project(name).run
+    def projects
+      MissionControl::Projects::Shell.launch
     end
 
     private

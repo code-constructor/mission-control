@@ -1,0 +1,16 @@
+module MissionControl
+  module Projects
+    class <%= class_name %> < Base
+      def description
+        'Lorem Ipsum'
+      end
+
+      def run
+        tab do
+          execute 'rails server'
+          open_chrome('http://localhost:3001')
+        end
+      end
+    end
+  end
+end
