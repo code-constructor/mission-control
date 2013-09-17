@@ -2,9 +2,13 @@ GEM
   remote: https://rubygems.org/
   specs:
     bombshell (0.1.6)
+    iterm-automator (0.1)
+      rb-appscript
+    rb-appscript (0.6.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   bombshell
+  iterm-automator
