@@ -16,7 +16,7 @@ module MissionControl
       private
 
       def project_paths
-        Dir[File.expand_path('../*.rb', __FILE__)]
+        Dir[File.expand_path('../../../../projects/*.rb', __FILE__)]
       end
 
       def project_class(project)
