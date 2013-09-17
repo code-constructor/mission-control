@@ -1,6 +1,10 @@
 module MissionControl
   module Projects
     class Example < Base
+      def description
+        'Lorem Ipsum'
+      end
+
       def run
         tab do
           execute 'cd ~/Development/wonderweblabs/mein-eventbus-shop'

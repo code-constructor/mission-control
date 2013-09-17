@@ -1,3 +1,5 @@
+require 'active_support/inflector'
+
 module MissionControl
   module Projects
     class Dispatcher
@@ -13,6 +15,23 @@ module MissionControl
         end
       end
 
+      def projects
+        project_classes.inject('') do |string, project|
+          name = project.to_s.underscore
+          object = project_class(name).new
+          description = object.description if object.respond_to?(:description)
+
+          string << "#{name} -> #{description[0..40]}"
+          string << "\n"
+
+          string
+        end
+      end
+
+      def project_exists?(project)
+        project_classes.include?(project.classify.to_sym)
+      end
+
       private
 
       def project_paths
@@ -26,17 +45,27 @@ module MissionControl
       def project_classes
         classes = scope.constants
 
+        hidden_constants.each do |constant|
+          classes.delete(constant)
+        end
+
         classes
       end
 
-      def project_exists?(project)
-        project_classes.include?(project.classify.to_sym)
-      end
 
       def load_projects
         project_paths.each do |path|
           require path
         end
+      end
+
+      def hidden_constants
+        [
+          :Base,
+          :Creater,
+          :Dispatcher,
+          :Shell,
+        ]
       end
 
       def scope
