@@ -11,11 +11,11 @@ module MissionControl
           execute 'mysql.server start'
           open_chrome('http://localhost:3000')
 
-          verticle_pane do
+          verticle do
             execute 'cd ~/Development/wonderweblabs/mein-eventbus-shop'
             execute 'rails console'
 
-            horizontal_pane do
+            horizontal do
               execute 'cd ~/Development/wonderweblabs/mein-eventbus-shop'
               execute "rails server -p 3000"
             end

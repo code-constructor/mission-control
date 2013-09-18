@@ -26,7 +26,7 @@ module MissionControl
           execute_block(context, &block)
         end
 
-        def verticle_pane(&block)
+        def verticle(&block)
           context = iterm.vertical_split
 
           # TODO add checking if window opening process is ready
@@ -35,7 +35,7 @@ module MissionControl
           execute_block(context, &block)
         end
 
-        def horizontal_pane(&block)
+        def horizontal(&block)
           context = iterm.horizontal_split
 
           # TODO add checking if window opening process is ready
