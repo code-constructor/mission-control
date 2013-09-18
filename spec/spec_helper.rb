@@ -1,4 +1,7 @@
-$:.unshift File.expand_path('../../lib/', __FILE__)
+$:.unshift File.expand_path('../../', __FILE__)
 
 require 'rubygems'
-require 'main'
+require 'bombshell'
+require 'rspec'
+require 'appscript'
+require 'lib/mission_control'
