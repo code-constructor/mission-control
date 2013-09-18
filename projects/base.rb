@@ -1,5 +1,3 @@
-require 'mission_control/console/iterm/iterm'
-
 module MissionControl
   module Projects
     class Base
