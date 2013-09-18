@@ -1,5 +1,3 @@
-require 'active_support/inflector'
-
 module MissionControl
   module Projects
     class Shell < Bombshell::Environment
@@ -14,13 +12,15 @@ module MissionControl
       end
 
       def all
-        puts dispatcher.projects
+        dispatcher.projects.each do |key, value|
+          puts "#{key} -> #{value}"
+        end
       end
 
       def create(name)
         name = beautify_name(name)
 
-        creater.create(name)
+        creator.create(name)
       end
 
       def method_missing(*args)
@@ -38,14 +38,16 @@ module MissionControl
         name = name.to_s
         name = name.delete(' ')
         name = name.underscore
+
+        name
       end
 
       def dispatcher
         @dispatcher ||= MissionControl::Projects::Dispatcher.new
       end
 
-      def creater
-        @creater ||= MissionControl::Projects::Creater.new
+      def creator
+        @creator ||= MissionControl::Projects::Creater.new
       end
     end
   end

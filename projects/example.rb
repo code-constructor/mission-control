@@ -9,15 +9,15 @@ module MissionControl
         tab do
           execute 'cd ~/Development/wonderweblabs/mein-eventbus-shop'
           execute 'mysql.server start'
-          open_chrome('http://localhost:3000')
+          execute command(:browser, :chrome, 'http://localhost:3000')
 
           verticle do
             execute 'cd ~/Development/wonderweblabs/mein-eventbus-shop'
-            execute 'rails console'
+            execute command(:rails, :server)
 
             horizontal do
               execute 'cd ~/Development/wonderweblabs/mein-eventbus-shop'
-              execute "rails server -p 3000"
+              execute command(:rails, :console)
             end
           end
         end

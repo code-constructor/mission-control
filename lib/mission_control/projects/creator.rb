@@ -1,10 +1,9 @@
 require 'erb'
 require 'ostruct'
-require 'active_support/inflector'
 
 module MissionControl
   module Projects
-    class Creater
+    class Creator
       def create(name)
         path = output_path(name)
         vars = template_vars(name)
