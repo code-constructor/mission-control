@@ -1,12 +1,11 @@
 require 'spec_helper'
-require 'lib/mission_control/console/commands/dispatcher'
 require 'active_support/inflector'
 
 describe MissionControl::Console::Commands::Dispatcher do
   before(:all) do
     @project_name = "test#{Time.now.to_i}"
 
-    @project_class = Class.new(Object) do
+    @project_class = Class.new(MissionControl::Projects::Base) do
       def text(test)
         test
       end
@@ -16,6 +15,8 @@ describe MissionControl::Console::Commands::Dispatcher do
   end
 
   it 'self.call the right command and action' do
+    puts "files #{MissionControl::Config.instance.projects_path}"
+
     expect(subject.class.call("#{@project_name}", 'text', 'text')).to eq('text')
   end
 

@@ -12,6 +12,19 @@ class MissionControl::Projects::Dispatcher
   end
 
   def projects
+    project_classes.inject([]) do |array, project|
+      name = project.to_s.underscore
+      object = project_class(name).new
+
+      if object.show_in_overview?
+        array << name
+      end
+
+      array
+    end
+  end
+
+  def projects_descriptions
     project_classes.inject({}) do |hash, project|
       name = project.to_s.underscore
       clazz = project_class(name)
@@ -34,7 +47,7 @@ class MissionControl::Projects::Dispatcher
   private
 
   def project_paths
-    Dir["#{MissionControl::Config.instance.projects_path}/*.rb"]
+    ::Dir["#{MissionControl::Config.instance.projects_path}/*.rb"]
   end
 
   def project_class(project)
@@ -72,6 +85,6 @@ class MissionControl::Projects::Dispatcher
   end
 
   def config
-    MissionControl::Config.instance
+    ::MissionControl::Config.instance
   end
 end
