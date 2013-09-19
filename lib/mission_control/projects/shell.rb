@@ -5,14 +5,20 @@ module MissionControl
 
       prompt_with 'projects'
 
-      def open(name)
-        name = beautify_name(name)
+      before_launch do
+        dispatcher.projects.each do |name|
+          send(:define_method, name) do
+            open_project(name)
+          end
+        end
+      end
 
-        dispatcher.project(name).run
+      def open(name)
+        open_project(name)
       end
 
       def all
-        dispatcher.projects.each do |key, value|
+        dispatcher.projects_descriptions.each do |key, value|
           puts "#{key} -> #{value}"
         end
       end
@@ -35,16 +41,24 @@ module MissionControl
 
       private
 
+      def open_project(name)
+        name = beautify_name(name)
+        dispatcher.project(name).run
+      end
+
       def beautify_name(name)
         name = name.to_s
         name = name.delete(' ')
-        name = name.underscore
 
-        name
+        name.underscore
       end
 
       def dispatcher
-        @dispatcher ||= MissionControl::Projects::Dispatcher.new
+        @dispatcher ||= self.class.dispatcher
+      end
+
+      def self.dispatcher
+        MissionControl::Projects::Dispatcher.new
       end
 
       def creator

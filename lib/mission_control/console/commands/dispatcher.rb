@@ -35,11 +35,11 @@ module MissionControl
         end
 
         def files
-          Dir["#{config.commands_path}/*.rb"]
+          ::Dir["#{config.commands_path}/*.rb"]
         end
 
         def config
-          MissionControl::Config.instance
+          ::MissionControl::Config.instance
         end
       end
     end

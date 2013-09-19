@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'lib/mission_control/projects/creator'
 
 describe MissionControl::Projects::Creator do
   before(:all) do

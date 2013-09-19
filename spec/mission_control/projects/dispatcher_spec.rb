@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'lib/mission_control/projects/dispatcher'
 require 'active_support/inflector'
 
 describe MissionControl::Projects::Dispatcher do
@@ -7,7 +6,7 @@ describe MissionControl::Projects::Dispatcher do
     @project_name = "test#{Time.now.to_i}"
 
     class_name = @project_name.classify
-    @project_class = Class.new(Object) do
+    @project_class = Class.new(MissionControl::Projects::Base) do
       def description
         'Lorem Ipsum'
       end
