@@ -3,9 +3,7 @@ module MissionControl
     module Commands
       module DSL
         def command(command, action, *args)
-          @commands_dispatcher ||= MissionControl::Console::Commands::Dispatcher.new
-
-          @commands_dispatcher.call(command, action, *args)
+          ::MissionControl::Console::Commands::Dispatcher.call(command, action, *args)
         end
       end
     end

@@ -2,6 +2,14 @@ module MissionControl
   module Console
     module Commands
       class Dispatcher
+        def self.call(command, action, *args)
+          self.object.call(command, action, *args)
+        end
+
+        def self.object
+          @object ||= self.new
+        end
+
         def initialize
           require_file
         end
