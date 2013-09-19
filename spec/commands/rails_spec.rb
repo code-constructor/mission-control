@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'commands/rails'
+require 'rails'
 require 'socket'
 
 describe MissionControl::Console::Commands::Rails do
@@ -18,8 +18,10 @@ describe MissionControl::Console::Commands::Rails do
   end
 
   it ".port return unused port" do
-    TCPServer.new('localhost', 3000) rescue nil
+    server = TCPServer.new('localhost', 3000) rescue nil
 
     expect(@result.port).to be > 3000
+
+    server.close
   end
 end
