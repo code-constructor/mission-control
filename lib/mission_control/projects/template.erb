@@ -5,10 +5,14 @@ module MissionControl
         'Lorem Ipsum'
       end
 
+      def dir
+        '~/Development'
+      end
+
       def run
         tab do
-          execute 'rails server'
-          open_chrome('http://localhost:3001')
+          exec(:rails, :server)
+          exec(:browser, :chrome, 'http://localhost:3000')
         end
       end
     end

@@ -2,22 +2,22 @@ module MissionControl
   module Projects
     class Example < Base
       def description
-        'Lorem Ipsum'
+        nil
       end
 
       def run
         tab do
-          execute 'cd ~/Development/wonderweblabs/mein-eventbus-shop'
-          execute 'mysql.server start'
-          execute command(:browser, :chrome, 'http://localhost:3000')
+          command 'cd ~/Development/wonderweblabs/mein-eventbus-shop'
+          command 'mysql.server start'
+          command(:browser, :chrome, 'http://localhost:3000')
 
           verticle do
-            execute 'cd ~/Development/wonderweblabs/mein-eventbus-shop'
-            execute command(:rails, :server)
+            command 'cd ~/Development/wonderweblabs/mein-eventbus-shop'
+            command(:rails, :server)
 
             horizontal do
-              execute 'cd ~/Development/wonderweblabs/mein-eventbus-shop'
-              execute command(:rails, :console)
+              command 'cd ~/Development/wonderweblabs/mein-eventbus-shop'
+              command(:rails, :console)
             end
           end
         end
