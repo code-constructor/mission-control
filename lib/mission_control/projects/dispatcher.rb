@@ -14,10 +14,14 @@ class MissionControl::Projects::Dispatcher
   def projects
     project_classes.inject({}) do |hash, project|
       name = project.to_s.underscore
-      object = project_class(name).new
-      description = object.description if object.respond_to?(:description)
+      clazz = project_class(name)
+      object = clazz.new
 
-      hash[name] = description
+      if object.show_in_overview?
+        description = object.description if object.respond_to?(:description)
+
+        hash[name] = description
+      end
 
       hash
     end
@@ -30,15 +34,15 @@ class MissionControl::Projects::Dispatcher
   private
 
   def project_paths
-    Dir[File.expand_path('../../../../projects/*.rb', __FILE__)]
+    Dir["#{MissionControl::Config.instance.projects_path}/*.rb"]
   end
 
   def project_class(project)
-    "#{scope}::#{project.classify}".constantize
+    "#{namespace}::#{project.classify}".constantize
   end
 
   def project_classes
-    classes = scope.constants
+    classes = namespace.constants
 
     hidden_constants.each do |constant|
       classes.delete(constant)
@@ -60,10 +64,14 @@ class MissionControl::Projects::Dispatcher
       :Creator,
       :Dispatcher,
       :Shell,
-    ]
+    ] + (config.hidden_projects || [])
   end
 
-  def scope
-    ::MissionControl::Projects
+  def namespace
+    config.projects_namespace
+  end
+
+  def config
+    MissionControl::Config.instance
   end
 end

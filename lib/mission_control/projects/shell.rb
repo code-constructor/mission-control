@@ -34,6 +34,7 @@ module MissionControl
       end
 
       private
+
       def beautify_name(name)
         name = name.to_s
         name = name.delete(' ')

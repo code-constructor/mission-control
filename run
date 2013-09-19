@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
-$:.unshift(File.dirname(__FILE__)) unless $:.include?(File.dirname(__FILE__))
+$:.unshift(File.dirname(__FILE__) + '/lib') unless $:.include?(File.dirname(__FILE__) + '/lib')
 
 require 'bombshell'
 require 'rubygems'
-require 'lib/mission_control'
+require 'mission_control'
 
 Bombshell.launch(MissionControl::Shell)

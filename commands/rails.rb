@@ -1,12 +1,11 @@
 require 'socket'
 
 class MissionControl::Console::Commands::Rails
-  # TODO extract to initialize
-  ActiveSupport::Inflector.inflections do |inflect|
-    inflect.singular('rails', 'rails')
-  end
+  def server(port = nil)
+    if port.nil?
+      port = self.port
+    end
 
-  def server
     "bundle exec rails server -p #{port}"
   end
 

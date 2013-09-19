@@ -19,6 +19,7 @@ module MissionControl
         end
 
         private
+
         def require_file
           files.each do |file|
             require file
@@ -26,15 +27,19 @@ module MissionControl
         end
 
         def object(name)
-          clazz(name).constantize.new
+          clazz(name).new
         end
 
         def clazz(name)
-          "MissionControl::Console::Commands::#{name.to_s.classify}"
+          "#{config.commands_namespace}::#{name.to_s.classify}".constantize
         end
 
         def files
-          Dir[File.expand_path('../../../../../commands/*.rb', __FILE__)]
+          Dir["#{config.commands_path}/*.rb"]
+        end
+
+        def config
+          MissionControl::Config.instance
         end
       end
     end
