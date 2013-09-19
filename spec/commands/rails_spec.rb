@@ -18,7 +18,7 @@ describe MissionControl::Console::Commands::Rails do
   end
 
   it ".port return unused port" do
-    server = TCPServer.new('localhost', 3000) rescue nil
+    server = TCPServer.new('0.0.0.0', 3000) rescue nil
 
     expect(@result.port).to be > 3000
 
