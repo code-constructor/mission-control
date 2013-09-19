@@ -23,10 +23,10 @@ module MissionControl
         end
       end
 
-      def create(name)
+      def create(name, template = nil)
         name = beautify_name(name)
 
-        creator.create(name)
+        creator.create(name, template)
       end
 
       def method_missing(*args)
@@ -58,11 +58,11 @@ module MissionControl
       end
 
       def self.dispatcher
-        MissionControl::Projects::Dispatcher.new
+        ::MissionControl::Projects::Dispatcher.new
       end
 
       def creator
-        @creator ||= MissionControl::Projects::Creater.new
+        @creator ||= ::MissionControl::Projects::Creator.new
       end
     end
   end

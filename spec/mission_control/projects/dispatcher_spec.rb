@@ -25,8 +25,12 @@ describe MissionControl::Projects::Dispatcher do
     end
   end
 
-  it '.projects returns description' do
-    expect(subject.projects).to include({@project_name => "Lorem Ipsum"})
+  it '.projects_descriptions returns description' do
+    expect(subject.projects_descriptions).to include({@project_name => "Lorem Ipsum"})
+  end
+
+  it '.projects returns array of project names' do
+    expect(subject.projects).to include(@project_name)
   end
 
   describe '.project_exists?' do
