@@ -11,6 +11,7 @@ require 'mission_control/console/commands/dispatcher'
 require 'mission_control/console/iterm/api'
 require 'mission_control/console/iterm/dsl'
 
+require 'mission_control/projects/dsl'
 require 'mission_control/projects/base'
 require 'mission_control/projects/creator'
 require 'mission_control/projects/dispatcher'
