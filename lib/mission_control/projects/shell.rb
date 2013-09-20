@@ -18,7 +18,7 @@ module MissionControl
       end
 
       def all
-        dispatcher.projects_descriptions.each do |key, value|
+        dispatcher.descriptions.each do |key, value|
           puts "#{key} -> #{value}"
         end
       end
@@ -29,20 +29,11 @@ module MissionControl
         creator.create(name, template)
       end
 
-      def method_missing(*args)
-        name = beautify_name(args[0])
-
-        if dispatcher.project_exists?(name)
-          open(name)
-        else
-          super(*args)
-        end
-      end
-
       private
 
       def open_project(name)
         name = beautify_name(name)
+
         dispatcher.project(name).run
       end
 
