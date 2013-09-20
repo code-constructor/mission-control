@@ -8,6 +8,10 @@ module MissionControl
         true
       end
 
+      def description
+        nil
+      end
+
       def exec(command, action = nil, *args)
         unless action.nil?
           command = command(command, action, *args)

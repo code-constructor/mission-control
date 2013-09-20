@@ -12,23 +12,19 @@ class MissionControl::Projects::Dispatcher
   end
 
   def projects
-    @projects ||= project_classes.inject([]) do |array, clazz|
-      name = project_name(clazz)
+    @projects ||= project_names.select do |name|
       object = project(name)
 
-      array << name if object.show_in_overview?
-
-      array
+      object.show_in_overview?
     end
   end
 
-  def projects_descriptions
-    @descriptions ||= project_classes.inject({}) do |hash, clazz|
-      name = project_name(clazz)
+  def descriptions
+    @descriptions ||= project_names.inject({}) do |hash, name|
       object = project(name)
 
       if object.show_in_overview?
-        hash[name] = object.respond_to?(:description) ? object.description : nil
+        hash[name] = object.description
       end
 
       hash
@@ -51,21 +47,30 @@ class MissionControl::Projects::Dispatcher
     ::Dir["#{MissionControl::Config.instance.projects_path}/*.rb"]
   end
 
+  def project_classes
+    @project_classes ||= begin
+      classes = namespace.constants
+
+      classes.reject do |clazz|
+        hidden_constants.include?(clazz)
+      end
+    end
+  end
+
   def project_class(project)
     "#{namespace}::#{project.classify}".constantize
+  end
+
+  def project_names
+    @project_names ||= project_classes.map do |clazz|
+      project_name(clazz)
+    end
   end
 
   def project_name(project)
     project.to_s.underscore
   end
 
-  def project_classes
-    classes = namespace.constants
-
-    classes.select do |clazz|
-      !hidden_constants.include?(clazz)
-    end
-  end
 
   def hidden_constants
     [
