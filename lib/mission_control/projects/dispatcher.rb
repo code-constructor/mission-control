@@ -76,6 +76,7 @@ class MissionControl::Projects::Dispatcher
     [
       :Base,
       :Creator,
+      :DSL,
       :Dispatcher,
       :Shell,
     ] + (config.hidden_projects || [])
