@@ -15,8 +15,6 @@ describe MissionControl::Console::Commands::Dispatcher do
   end
 
   it 'self.call the right command and action' do
-    puts "files #{MissionControl::Config.instance.projects_path}"
-
     expect(subject.class.call("#{@project_name}", 'text', 'text')).to eq('text')
   end
 

@@ -7,6 +7,7 @@ module MissionControl
     # TODO extract to initialize
     ActiveSupport::Inflector.inflections do |inflect|
       inflect.singular('rails', 'rails')
+      inflect.singular('ios', 'ios')
     end
 
     def commands_path

@@ -38,18 +38,18 @@ module MissionControl
         unless name.nil?
           name = name.to_s.underscore
 
-          "#{config.templates_path}/#{name}.erb"
+          Dir["#{config.templates_path}/**/#{name}.erb"].first
         else
           nil
         end
       end
 
       def output_path(name)
-        File.expand_path("../../../../projects/#{name}.rb", __FILE__)
+        "#{config.projects_path}/#{name}.rb"
       end
 
       def projects_dir
-        File.expand_path("../../../../projects", __FILE__)
+        config.projects_path
       end
 
       def config
