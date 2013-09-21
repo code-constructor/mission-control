@@ -7,5 +7,22 @@ module MissionControl
     def projects
       MissionControl::Projects::Shell.launch
     end
+
+    def help
+      rows = []
+
+      rows << [
+        'projects',
+        'Open projects-subshell',
+      ]
+
+      puts "Use tab for autocompletion!\n"
+
+      puts Terminal::Table.new(
+        title: "Actions",
+        headings: ['NAME', 'DESC'],
+        rows: rows,
+      )
+    end
   end
 end
