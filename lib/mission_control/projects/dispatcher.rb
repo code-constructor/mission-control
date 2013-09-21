@@ -12,7 +12,7 @@ class MissionControl::Projects::Dispatcher
   end
 
   def projects
-    @projects ||= project_names.select do |name|
+    project_names.select do |name|
       object = project(name)
 
       object.show_in_overview?
@@ -20,7 +20,7 @@ class MissionControl::Projects::Dispatcher
   end
 
   def descriptions
-    @descriptions ||= project_names.inject({}) do |hash, name|
+    project_names.inject({}) do |hash, name|
       object = project(name)
 
       if object.show_in_overview?
@@ -35,25 +35,23 @@ class MissionControl::Projects::Dispatcher
     project_classes.include?(project.classify.to_sym)
   end
 
-  private
-
   def load_projects
     project_paths.each do |path|
       require path
     end
   end
 
+  private
+
   def project_paths
     ::Dir["#{MissionControl::Config.instance.projects_path}/**/*.rb"]
   end
 
   def project_classes
-    @project_classes ||= begin
-      classes = namespace.constants
+    classes = namespace.constants
 
-      classes.reject do |clazz|
-        hidden_constants.include?(clazz)
-      end
+    classes.reject do |clazz|
+      hidden_constants.include?(clazz)
     end
   end
 
@@ -62,7 +60,7 @@ class MissionControl::Projects::Dispatcher
   end
 
   def project_names
-    @project_names ||= project_classes.map do |clazz|
+    project_classes.map do |clazz|
       project_name(clazz)
     end
   end

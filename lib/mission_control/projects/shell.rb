@@ -8,11 +8,7 @@ module MissionControl
       prompt_with 'projects'
 
       before_launch do
-        dispatcher.projects.each do |name|
-          send(:define_method, name) do
-            open_project(name)
-          end
-        end
+        define_project_methods
       end
 
       def help
@@ -28,6 +24,11 @@ module MissionControl
         help_projects
       end
 
+      def reload
+        dispatcher.load_projects
+        self.class.define_project_methods
+      end
+
       def create(name, template = nil)
         name = beautify_name(name)
 
@@ -35,6 +36,14 @@ module MissionControl
       end
 
       private
+
+      def self.define_project_methods
+        dispatcher.projects.each do |name|
+          send(:define_method, name) do
+            open_project(name)
+          end
+        end
+      end
 
       def open_project(name)
         name = beautify_name(name)
@@ -81,6 +90,12 @@ module MissionControl
           'create(name, template = default)',
           "Create a new project at the defined \nprojects path (see config.rb in lib directory).",
           "- name: of the project as symbol in snakecase\n- template: to generate the project file. Default \nis the mission-control provided template.",
+        ]
+
+        rows << :separator
+        rows << [
+          'reload',
+          "Load new projects into mission-control.",
         ]
 
         rows << :separator
