@@ -23,7 +23,7 @@ module MissionControl
     end
 
     def templates_path
-      File.expand_path('../../../projects/templates', __FILE__)
+      "#{projects_path}/templates"
     end
 
     def projects_namespace
