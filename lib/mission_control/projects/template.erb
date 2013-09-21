@@ -6,9 +6,38 @@ module MissionControl
       end
 
       def run
+        # open a new tab
         tab do
-          exec(:rails, :server)
-          exec(:browser, :chrome, 'http://localhost:3000')
+
+          # open a new verticle pane in the surrounded context (e.g. tab)
+          verticle do
+            # method to call a command defined by a command class
+            # at the
+            #
+            # e.g. a simple example
+            #
+            # file in the commands directory (see commands-path at config.rb):
+            # class MissionControl::Console::Commands::Dir
+            #   def cd(path)
+            #     "cd #{path}"
+            #   end
+            # end
+            #
+            # :dir is the class that gets instantiated
+            # :cd is the method that gets called
+            # '~/foo/bar' argument that gets passed to the method
+            #
+            # The exec method automaticly creates an instance of the
+            # MissionControl::Console::Commands::Dir class and calls the 'cd'-method with the given
+            # argument '~/foo/bar'. The exec-method takes the return value and executes it in the
+            # surrounded context
+            #
+            # exec(:dir, :cd, '~/foo/bar')
+          end
+
+          # open a new horizontal pane in the surrounded context (e.g. tab)
+          horizontal do
+          end
         end
       end
     end
