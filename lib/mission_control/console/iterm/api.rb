@@ -19,6 +19,15 @@ module MissionControl
           session = window.launch_(session: 'New Session')
         end
 
+        def close_tab(tab = nil)
+          tab ||= active_tab
+
+          # TODO add checking if window opening process is ready
+          sleep(0.1)
+
+          tab.terminate
+        end
+
         def open_window
           window = iterm.make(new: :terminal)
           window.launch_(session: 'New session')
@@ -32,7 +41,10 @@ module MissionControl
           active_window.current_session
         end
 
-        def execute_command(command, context)
+        def execute_command(command, context = nil)
+          # TODO add checking if window opening process is ready
+          sleep(0.1)
+
           context ||= active_tab
           context.write(text: command)
         end
