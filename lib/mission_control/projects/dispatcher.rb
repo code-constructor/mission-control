@@ -44,7 +44,7 @@ class MissionControl::Projects::Dispatcher
   end
 
   def project_paths
-    ::Dir["#{MissionControl::Config.instance.projects_path}/*.rb"]
+    ::Dir["#{MissionControl::Config.instance.projects_path}/**/*.rb"]
   end
 
   def project_classes

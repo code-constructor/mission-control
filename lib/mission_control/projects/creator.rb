@@ -13,7 +13,8 @@ module MissionControl
         output << ERB.new(template).result(vars)
         output.close
 
-        puts "Created at #{output_path(name)}"
+        open_file_in_editor(path)
+        puts "Created at #{path}"
       end
 
       private
@@ -54,6 +55,22 @@ module MissionControl
 
       def config
         ::MissionControl::Config.instance
+      end
+
+      def console
+        @console ||= ::MissionControl::Console::Iterm::Api.new
+      end
+
+      def editor
+        ENV['BUNDLER_EDITOR']
+      end
+
+      def open_file_in_editor(path)
+        unless editor.nil?
+          tab = console.open_tab
+          console.execute_command("#{editor} #{path}")
+          console.close_tab(tab)
+        end
       end
     end
   end

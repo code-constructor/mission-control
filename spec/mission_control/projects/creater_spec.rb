@@ -12,6 +12,8 @@ describe MissionControl::Projects::Creator do
 
   describe '.create' do
     it 'return object of project' do
+      ENV['BUNDLER_EDITOR'] = nil
+
       subject.create(@name)
 
       files = Dir["#{@projects_dir}/*.rb"]
