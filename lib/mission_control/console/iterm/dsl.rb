@@ -11,17 +11,11 @@ module MissionControl
         def window(&block)
           context = iterm.open_window
 
-          # TODO add checking if window opening process is ready
-          sleep(0.1)
-
           execute_block(context, &block)
         end
 
         def tab(&block)
           context = iterm.open_tab
-
-          # TODO add checking if window opening process is ready
-          sleep(0.1)
 
           execute_block(context, &block)
         end
@@ -29,25 +23,16 @@ module MissionControl
         def verticle(&block)
           context = iterm.vertical_split
 
-          # TODO add checking if window opening process is ready
-          sleep(0.1)
-
           execute_block(context, &block)
         end
 
         def horizontal(&block)
           context = iterm.horizontal_split
 
-          # TODO add checking if window opening process is ready
-          sleep(0.1)
-
           execute_block(context, &block)
         end
 
         def execute(command)
-          # TODO add checking if window opening process is ready
-          sleep(0.1)
-
           iterm.execute_command(command, current_context)
         end
 
