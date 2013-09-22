@@ -67,7 +67,7 @@ module MissionControl
 
       def open_file_in_editor(path)
         unless editor.nil?
-          tab = console.open_tab
+          window = console.open_window
           console.execute_command("#{editor} #{path}")
           console.close_tab(tab)
         end
