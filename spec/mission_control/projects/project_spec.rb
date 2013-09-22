@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'active_support/inflector'
 
-describe MissionControl::Projects::Project do
+describe MissionControl::Models::Project do
   describe '#all' do
     before(:all) do
       @project_name = "test#{Time.now.to_i}"
@@ -16,12 +16,12 @@ describe MissionControl::Projects::Project do
     end
 
     it 'return all project objects' do
-      objects = MissionControl::Projects::Project.all
+      objects = MissionControl::Models::Project.all
 
       expect(objects.size).to have_at_least(0).items
 
       objects.each do |object|
-        expect(object.class).to eq(MissionControl::Projects::Project)
+        expect(object.class).to eq(MissionControl::Models::Project)
       end
     end
   end
@@ -40,7 +40,7 @@ describe MissionControl::Projects::Project do
     end
 
     it 'return a project by its name' do
-      object = MissionControl::Projects::Project.find_by_name(@project_name.to_sym)
+      object = MissionControl::Models::Project.find_by_name(@project_name.to_sym)
 
       expect(object.class.to_s).to_not eq(MissionControl::Projects::Base)
       expect(object.name).to eql(@project_name.to_sym)
@@ -60,11 +60,11 @@ describe MissionControl::Projects::Project do
       MissionControl::Projects.const_set(class_name, @project_class)
     end
 
-    subject{MissionControl::Projects::Project.new(@project_class)}
+    subject{MissionControl::Models::Project.new(@project_class)}
 
     it{ expect(subject.class.to_s).to_not(eq(MissionControl::Projects::Base)) }
     it{ expect(subject.name).to eql(@project_name.to_sym) }
     it{ expect(subject.description).to eql(@project_class.new.description) }
-    it{ expect(subject.visible?).to eql(@project_class.new.show_in_overview?) }
+    it{ expect(subject.visible?).to eql(@project_class.new.visible?) }
   end
 end

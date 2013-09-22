@@ -4,4 +4,4 @@ $:.unshift(File.dirname(__FILE__) + '/lib') unless $:.include?(File.dirname(__FI
 require 'bombshell'
 require 'mission_control'
 
-Bombshell.launch(MissionControl::Shell)
+Bombshell.launch(MissionControl::Shells::Main)

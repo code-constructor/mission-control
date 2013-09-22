@@ -1,6 +1,6 @@
 require 'socket'
 
-class MissionControl::Console::Commands::Rails
+class MissionControl::Commands::Rails
   def server(port = nil)
     if port.nil?
       port = self.port

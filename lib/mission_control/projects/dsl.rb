@@ -8,8 +8,8 @@ module MissionControl
           end
         end
 
-        def show_in_overview(value = nil)
-          define_method :show_in_overview? do
+        def visible(value = nil)
+          define_method :visible? do
             block_given? ? yield(self.class) : value
           end
         end
