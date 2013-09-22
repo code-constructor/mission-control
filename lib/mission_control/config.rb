@@ -11,7 +11,7 @@ module MissionControl
     end
 
     def commands_path
-      File.expand_path('../../../commands', __FILE__)
+      "#{projects_path}/commands"
     end
 
     def projects_path
