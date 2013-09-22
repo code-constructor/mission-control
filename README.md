@@ -20,8 +20,8 @@ Execute the run script in the projects root directory.
 
 ###A minimum project class:
 
-  class MissionControl::Projects::LittleProject < MissionControl::Projects::Base
-    description 'Little Project'
+    class MissionControl::Projects::LittleProject < MissionControl::Projects::Base
+      description 'Little Project'
 
       def run
         tab do
@@ -31,7 +31,7 @@ Execute the run script in the projects root directory.
           verticle do
             execute 'cd ~/foo/little-project'
             execute 'rails console'
-      end
+          end
 
           horizontal do
             execute 'cd ~/foo/little-project'
@@ -57,17 +57,18 @@ Mission Control provides a helper mechanism to define complex, dynamic or often 
 
       def run
         tab do
-        exec (:dir, :cd, '~/foo/little-project')
-        execute 'git status'
-
-        verticle do
           exec (:dir, :cd, '~/foo/little-project')
-          execute 'rails console'
-    end
+          execute 'git status'
 
-        horizontal do
-          exec (:dir, :cd, '~/foo/little-project')
-          execute 'rails server'
+          verticle do
+            exec (:dir, :cd, '~/foo/little-project')
+            execute 'rails console'
+          end
+
+          horizontal do
+            exec (:dir, :cd, '~/foo/little-project')
+            execute 'rails server'
+          end
         end
       end
     end
