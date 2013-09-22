@@ -9,10 +9,17 @@ module MissionControl
         # open a new tab
         tab do
 
+          # The execute-method executes the given command in the surrounded shell context
+          #
+          # e.g.
+          # execute 'ls'
+
           # open a new verticle pane in the surrounded context (e.g. tab)
           verticle do
+            #
             # method to call a command defined by a command class
-            # at the
+            #
+            # command(:class_name, :method_name, *args)
             #
             # e.g. a simple example
             #
@@ -23,20 +30,28 @@ module MissionControl
             #   end
             # end
             #
-            # :dir is the class that gets instantiated
-            # :cd is the method that gets called
-            # '~/foo/bar' argument that gets passed to the method
             #
-            # The exec method automaticly creates an instance of the
+            # The execute method automaticly creates an instance of the
             # MissionControl::Console::Commands::Dir class and calls the 'cd'-method with the given
             # argument '~/foo/bar'. The exec-method takes the return value and executes it in the
             # surrounded context
             #
+            # long version:
+            # execute(
+            #   command(:dir, :cd, '~/foo/bar')
+            # )
+            #
+            # short version:
             # exec(:dir, :cd, '~/foo/bar')
+            #
+            # :dir is the class that gets instantiated
+            # :cd is the method that gets called
+            # '~/foo/bar' argument that gets passed to the method
           end
 
           # open a new horizontal pane in the surrounded context (e.g. tab)
           horizontal do
+
           end
         end
       end
