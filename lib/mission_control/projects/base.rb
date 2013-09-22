@@ -1,12 +1,12 @@
 module MissionControl
   module Projects
     class Base
-      include MissionControl::Projects::DSL
+      include MissionControl::Commands::DSL
       include MissionControl::Console::Iterm::DSL
-      include MissionControl::Console::Commands::DSL
+      include MissionControl::Projects::DSL
 
       description nil
-      show_in_overview true
+      visible true
 
       def exec(command, action = nil, *args)
         unless action.nil?

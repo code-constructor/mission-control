@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'active_support/inflector'
 
-describe MissionControl::Console::Commands::Dispatcher do
+describe MissionControl::Commands::Dispatcher do
   before(:all) do
     @project_name = "test#{Time.now.to_i}"
 
@@ -11,7 +11,7 @@ describe MissionControl::Console::Commands::Dispatcher do
       end
     end
 
-    MissionControl::Console::Commands.const_set(@project_name.classify, @project_class)
+    MissionControl::Commands.const_set(@project_name.classify, @project_class)
   end
 
   it 'self.call the right command and action' do
