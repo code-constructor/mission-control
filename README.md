@@ -114,7 +114,7 @@ Keep in mind, that the project- and the command-file are only ruby class. This m
 4. mission control creates a new project file in the projects directory. If a template is given as the second argument, mission control uses this ERB-template to create the project file. If the template argument is not defined, mission control uses the standard ERB-template to create the new projects file.
 
 ##Template - System
-To allow a simple and fast creation of a new project, mission control provides the possibility to define templates for a project-file. A template must be an erb file and can be specified in the mission control console in the creation instruction (see section 'Create a new project'). E.g.
+To allow a simple and fast creation of a new project, mission control provides the possibility to define templates for a project-file. A template must be an erb file and can be specified in the mission control console with the creation instruction (see section 'Create a new project'). E.g.
 
     module MissionControl
       module Projects
