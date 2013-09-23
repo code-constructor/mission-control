@@ -12,9 +12,12 @@ Mission Control helps to solve this problem. With the full power of ruby, it's p
 
 ##Run
 Checkout the project from github. Create a folder for the projects, commands and templates and define the paths in lib/config.rb. The standard-setting are:
-Project-Dir at <root>/projects
-Commands-Dir at <root>/projects/commands
-Templates-Dir at <root>/projects/templates
+
+Project-Dir: root/projects
+
+Commands-Dir: root/projects/commands
+
+Templates-Dir: root/projects/templates
 
 Execute the run script in the projects root directory.
 
@@ -107,7 +110,7 @@ Keep in mind, that the project- and the command-file are only ruby class. This m
 ##Create a new project
 1. Execute the run skript in the project root folder
 2. open the projects subshell with 'projects'
-3. write 'create <project_name>, <template>'
+3. write 'create project_name, template'
 4. mission control creates a new project file in the projects directory. If a template is given as the second argument, mission control uses this ERB-template to create the project file. If the template argument is not defined, mission control uses the standard ERB-template to create the new projects file.
 
 ##Template - System
