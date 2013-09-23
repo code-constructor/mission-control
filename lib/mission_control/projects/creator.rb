@@ -5,8 +5,8 @@ module MissionControl
   module Projects
     class Creator
       def create(name, template_name = nil)
-        path = output_path(name)
-        vars = template_vars(name)
+        path = output_path(name.to_s)
+        vars = template_vars(name.to_s)
         template = template(template_name)
 
         output = File.open(path, 'w+')
