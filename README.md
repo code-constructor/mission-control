@@ -21,7 +21,7 @@ Templates-Dir: root/projects/templates
 
 Execute the run script in the projects root directory.
 
-###A minimum project class:
+###An easy project class:
 
     class MissionControl::Projects::LittleProject < MissionControl::Projects::Base
       description 'Little Project'
