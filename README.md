@@ -1,7 +1,7 @@
 mission-control
 ===============
 
-Mission Control allows the automatic setup of your everyday used projects.
+Mission Control allows the automatic setup of your everyday used projects on a mac with the help of iterm.
 
 ##The Problem:
 Your working day starts. You switch on your computer and must open your project setup with different shells. One for a rails server, another for a rails console, a third for the git commands and so on. It's even more worse to do this when you must switch between different project and repeat the opening tasks again and again.
